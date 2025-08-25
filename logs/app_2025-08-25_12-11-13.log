@@ -1,0 +1,10 @@
+[2025-08-25_12-11-13] Iniciando app.py...
+/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/.venv/lib/python3.11/site-packages/rsa/key.py:553: UserWarning: You have provided a malformed keyfile. Either the exponents or the coefficient are incorrect. Using the correct values instead.
+  warnings.warn(
+2025-08-25 12:11:13,479 - INFO - EventArb Bot — Semana 5 (MAINNET MODE)
+2025-08-25 12:11:13,480 - INFO - ✅ Database initialized at trades.db
+2025-08-25 12:11:13,822 - INFO - ✅ Binance Mainnet client configured
+2025-08-25 12:11:14,027 - INFO - ✅ Binance connection successful
+2025-08-25 12:11:14,029 - WARNING - Trading halted due to daily limits
+Daily trade limit reached (528/20)
+[2025-08-25 12:11:14] app.py terminó con código: 0

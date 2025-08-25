@@ -1,0 +1,17 @@
+[2025-08-25_11-34-18] Inicio app.py
+/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/.venv/lib/python3.11/site-packages/rsa/key.py:553: UserWarning: You have provided a malformed keyfile. Either the exponents or the coefficient are incorrect. Using the correct values instead.
+  warnings.warn(
+2025-08-25 11:34:19,466 - INFO - EventArb Bot — Semana 5 (MAINNET MODE)
+2025-08-25 11:34:19,469 - INFO - ✅ Database initialized at trades.db
+2025-08-25 11:34:19,882 - INFO - ✅ Binance Mainnet client configured
+2025-08-25 11:34:20,084 - INFO - ✅ Binance connection successful
+Traceback (most recent call last):
+  File "/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/app.py", line 302, in <module>
+    main()
+  File "/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/app.py", line 210, in main
+    if not daily_limits.can_trade():
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/app.py", line 34, in can_trade
+    logger.warning(f"Daily trade limit reached ({self.today_trades}/{self.daily_max_trades})")
+    ^^^^^^
+NameError: name 'logger' is not defined

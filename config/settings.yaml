@@ -1,0 +1,3 @@
+simulation: false           # Semana 5: mainnet real
+default_notional_usd: 50.0  # tamaño por defecto por acción
+log_level: INFO
