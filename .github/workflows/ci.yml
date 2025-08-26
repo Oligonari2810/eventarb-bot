@@ -46,7 +46,7 @@ jobs:
         
     - name: Type check with mypy
       run: |
-        mypy eventarb/ --ignore-missing-imports
+        mypy p1/ --ignore-missing-imports
         
     - name: Run tests
       run: |
