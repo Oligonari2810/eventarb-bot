@@ -26,7 +26,11 @@ def setup_logger(name, log_file):
         return logger
 
     handler = logging.handlers.RotatingFileHandler(
-        log_file, maxBytes=5_000_000, backupCount=5, delay=True, encoding="utf-8"  # 5MB
+        log_file,
+        maxBytes=5_000_000,
+        backupCount=5,
+        delay=True,
+        encoding="utf-8",  # 5MB
     )
 
     formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s")
@@ -72,8 +76,9 @@ class BotRunner:
         try:
             # Importar y ejecutar app.main() directamente
             from app import main
+
             exit_code = 0
-            
+
             try:
                 main()
             except Exception as e:
@@ -83,7 +88,9 @@ class BotRunner:
             # Escribir log básico
             with open(log_file, "w", encoding="utf-8") as f:
                 f.write(f"[{timestamp}] Iniciando app.py...\n")
-                f.write(f"[{time.strftime('%F %T')}] app.py terminó con código: {exit_code}\n")
+                f.write(
+                    f"[{time.strftime('%F %T')}] app.py terminó con código: {exit_code}\n"
+                )
 
             logger.info(
                 f"✅ Ciclo {self.cycle_count} completado - Exit code: {exit_code}"

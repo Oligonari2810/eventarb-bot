@@ -28,7 +28,12 @@ class AlertManager:
     def add(self, etype: str, file: str, now: Optional[float] = None):
         now = now or time.time()
         if etype == "fatal":
-            return {"emit": True, "grouped": False, "count": 1, "next_allowed": 0}
+            return {
+                "emit": True,
+                "grouped": False,
+                "count": 1,
+                "next_allowed": 0,
+            }
 
         rule = self.rules.get(etype)
         if not rule:

@@ -14,6 +14,18 @@ from decimal import Decimal
 import yaml
 from dotenv import load_dotenv
 
+# Imports al inicio del archivo
+from eventarb.core.logging_setup import setup_logging
+from eventarb.core.planner import plan_actions_for_event
+from eventarb.core.risk_manager import RiskManager
+from eventarb.exec.order_router import OrderRouter
+from eventarb.exec.sl_tp_manager import SLTPManager
+from eventarb.ingest.sheets_reader import read_events_from_sheet
+from eventarb.integrations.google_sheets_logger import sheets_logger
+from eventarb.metrics.oco_metrics import OCOMetrics
+from eventarb.notify.telegram_stub import send_telegram
+from eventarb.storage.repository import init_db, insert_trade
+
 # Configurar logging robusto ANTES de cualquier import
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -30,7 +42,11 @@ def setup_robust_logger(name, log_file):
 
     try:
         handler = logging.handlers.RotatingFileHandler(
-            log_file, maxBytes=5_000_000, backupCount=5, delay=True, encoding="utf-8"  # 5MB
+            log_file,
+            maxBytes=5_000_000,
+            backupCount=5,
+            delay=True,
+            encoding="utf-8",  # 5MB
         )
         formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s")
         handler.setFormatter(formatter)
@@ -42,19 +58,6 @@ def setup_robust_logger(name, log_file):
         logging.basicConfig(level=logging.INFO)
 
     return logger
-
-
-# Imports sin inicialización
-from eventarb.core.logging_setup import setup_logging
-from eventarb.core.planner import plan_actions_for_event
-from eventarb.core.risk_manager import RiskManager
-from eventarb.exec.order_router import OrderRouter
-from eventarb.exec.sl_tp_manager import SLTPManager
-from eventarb.ingest.sheets_reader import read_events_from_sheet
-from eventarb.integrations.google_sheets_logger import sheets_logger
-from eventarb.metrics.oco_metrics import OCOMetrics
-from eventarb.notify.telegram_stub import send_telegram
-from eventarb.storage.repository import init_db, insert_trade
 
 
 class DailyLimits:
@@ -94,7 +97,8 @@ class DailyLimits:
             # Get today's trade count
             today = datetime.now().strftime("%Y-%m-%d")
             cursor.execute(
-                "SELECT COUNT(*) FROM trades WHERE DATE(created_at) = ?", (today,)
+                "SELECT COUNT(*) FROM trades WHERE DATE(created_at) = ?",
+                (today,),
             )
             self.today_trades = cursor.fetchone()[0]
 
@@ -115,7 +119,8 @@ class DailyLimits:
             # Get today's trade count
             today = datetime.now().strftime("%Y-%m-%d")
             cursor.execute(
-                "SELECT COUNT(*) FROM trades WHERE DATE(created_at) = ?", (today,)
+                "SELECT COUNT(*) FROM trades WHERE DATE(created_at) = ?",
+                (today,),
             )
             self.today_trades = cursor.fetchone()[0]
 
@@ -227,7 +232,7 @@ def setup_app_logger():
 def main():
     load_dotenv()
     logger = setup_logging()
-    app_logger = setup_app_logger()  # Inicializar logger principal
+    _ = setup_app_logger()  # Inicializar logger principal (ignorar retorno)
     cfg = load_settings()
 
     # KILL SWITCH - Parar bot si está activado
@@ -239,7 +244,7 @@ def main():
     # Determine bot mode from environment
     bot_mode = os.getenv("BOT_MODE", "mainnet")
     simulation_mode = bot_mode == "testnet" or bot_mode == "simulation"
-    
+
     if simulation_mode:
         logger.info("EventArb Bot — Semana 5 (TESTNET/SIMULATION MODE)")
     else:

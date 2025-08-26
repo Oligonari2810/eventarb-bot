@@ -1,9 +1,8 @@
 import os
 import sqlite3
+import sys
 import tempfile
 from datetime import datetime
-
-import sys
 
 sys.path.append("p1")
 from daily_counter import calculate_daily_pnl, get_daily_count
