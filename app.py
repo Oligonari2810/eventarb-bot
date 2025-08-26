@@ -44,9 +44,7 @@ def setup_robust_logger(name, log_file):
     return logger
 
 
-# Configurar logger principal de la app
-app_logger = setup_robust_logger("bot_app", "logs/app.log")
-
+# Imports sin inicialización
 from eventarb.core.logging_setup import setup_logging
 from eventarb.core.planner import plan_actions_for_event
 from eventarb.core.risk_manager import RiskManager
@@ -221,9 +219,15 @@ def load_settings():
         return yaml.safe_load(f)
 
 
+def setup_app_logger():
+    """Configura el logger principal de la app"""
+    return setup_robust_logger("bot_app", "logs/app.log")
+
+
 def main():
     load_dotenv()
     logger = setup_logging()
+    app_logger = setup_app_logger()  # Inicializar logger principal
     cfg = load_settings()
 
     # KILL SWITCH - Parar bot si está activado

@@ -8,7 +8,6 @@ import logging
 import logging.handlers
 import os
 import signal
-import subprocess
 import sys
 import time
 
@@ -46,7 +45,6 @@ class BotRunner:
     """Runner principal del bot con manejo robusto de procesos"""
 
     def __init__(self):
-        self.process = None
         self.running = True
         self.cycle_count = 0
 
@@ -62,14 +60,6 @@ class BotRunner:
         """Maneja señales de terminación de forma segura"""
         logger.info(f"📴 Señal recibida: {signum}")
         self.running = False
-        if self.process:
-            logger.info("🔄 Terminando proceso del bot...")
-            self.process.terminate()
-            try:
-                self.process.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                logger.warning("⚠️ Proceso no terminó, forzando...")
-                self.process.kill()
 
     def run_bot_cycle(self):
         """Ejecuta un ciclo del bot"""
@@ -80,18 +70,15 @@ class BotRunner:
         logger.info(f"🔄 Ciclo {self.cycle_count}: Iniciando app.py")
 
         try:
-            # Ejecutar app.py con logging robusto
-            self.process = subprocess.Popen(
-                [sys.executable, "app.py"],
-                stdout=None,  # Usar stdout del proceso padre
-                stderr=None,  # Usar stderr del proceso padre
-                text=True,
-                bufsize=1,
-                universal_newlines=True,
-            )
-
-            # Esperar a que termine el proceso
-            exit_code = self.process.wait()
+            # Importar y ejecutar app.main() directamente
+            from app import main
+            exit_code = 0
+            
+            try:
+                main()
+            except Exception as e:
+                logger.error(f"Error en app.main(): {e}")
+                exit_code = 1
 
             # Escribir log básico
             with open(log_file, "w", encoding="utf-8") as f:
