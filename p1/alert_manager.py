@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Optional
 
 
 @dataclass
@@ -20,12 +20,12 @@ DEFAULT_RULES = {
 
 
 class AlertManager:
-    def __init__(self, rules: Dict[str, Rule] = None):
+    def __init__(self, rules: Optional[Dict[str, Rule]] = None):
         self.rules = rules or DEFAULT_RULES
         # key = (etype, file), value = dict(count:int, first_ts:float, next_allowed:float)
         self.state: Dict[Tuple[str, str], Dict[str, float]] = {}
 
-    def add(self, etype: str, file: str, now: float = None):
+    def add(self, etype: str, file: str, now: Optional[float] = None):
         now = now or time.time()
         if etype == "fatal":
             return {"emit": True, "grouped": False, "count": 1, "next_allowed": 0}
