@@ -4,13 +4,14 @@ EventArb Bot - Aplicación principal
 Bot para automatizar eventos y notificaciones
 """
 
-import os
-import yaml
-import sqlite3
 import logging
 import logging.handlers
-from decimal import Decimal
+import os
+import sqlite3
 from datetime import datetime
+from decimal import Decimal
+
+import yaml
 from dotenv import load_dotenv
 
 # Configurar logging robusto ANTES de cualquier import
@@ -43,15 +44,15 @@ def setup_robust_logger(name, log_file):
 app_logger = setup_robust_logger("bot_app", "logs/app.log")
 
 from eventarb.core.logging_setup import setup_logging
-from eventarb.ingest.sheets_reader import read_events_from_sheet
 from eventarb.core.planner import plan_actions_for_event
-from eventarb.notify.telegram_stub import send_telegram
-from eventarb.storage.repository import init_db, insert_trade
 from eventarb.core.risk_manager import RiskManager
 from eventarb.exec.order_router import OrderRouter
 from eventarb.exec.sl_tp_manager import SLTPManager
-from eventarb.metrics.oco_metrics import OCOMetrics
+from eventarb.ingest.sheets_reader import read_events_from_sheet
 from eventarb.integrations.google_sheets_logger import sheets_logger
+from eventarb.metrics.oco_metrics import OCOMetrics
+from eventarb.notify.telegram_stub import send_telegram
+from eventarb.storage.repository import init_db, insert_trade
 
 
 class DailyLimits:
@@ -182,9 +183,7 @@ def today_loss_pct(db_path: str = "trades.db") -> float:
         equity_start_of_day = starting_capital + pnl_until_yesterday
         if equity_start_of_day <= 0:
             # Evita divisiones por cero o bases inválidas
-            print(
-                "⚠️ Equity de inicio de día <= 0; devolviendo 0 para today_loss_pct()"
-            )
+            print("⚠️ Equity de inicio de día <= 0; devolviendo 0 para today_loss_pct()")
             return 0.0
 
         # PnL realizado de HOY

@@ -7,10 +7,10 @@ Resuelve el error crítico de 'Bad file descriptor'
 import logging
 import logging.handlers
 import os
-import sys
-import time
 import signal
 import subprocess
+import sys
+import time
 
 # Configurar logging robusto
 LOG_DIR = "logs"

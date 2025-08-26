@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
+import logging
 import os
 import time
-import logging
 from datetime import datetime
+
 from eventarb.notify.telegram_stub import send_telegram
 
 # Configure logging

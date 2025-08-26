@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 
-import sys
 import os
+import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-import logging
-import pandas as pd
 from decimal import Decimal
-from eventarb.core.logging_setup import setup_logging
-from eventarb.core.models import Event, PlannedAction
+
 from eventarb.backtest.engine import load_price_data, run_backtest
 from eventarb.backtest.metrics import summarize_backtest
+from eventarb.core.logging_setup import setup_logging
+from eventarb.core.models import PlannedAction
 
 
 def main():
