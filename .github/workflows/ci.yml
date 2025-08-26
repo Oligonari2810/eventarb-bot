@@ -55,7 +55,7 @@ jobs:
     - name: Security scan
       run: |
         pip install bandit
-        bandit -r eventarb/ -f json -o bandit-report.json || true
+        bandit -r p1/ -f json -o bandit-report.json || true
         
     - name: Upload security report
       uses: actions/upload-artifact@v4
