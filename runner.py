@@ -83,27 +83,20 @@ class BotRunner:
             # Ejecutar app.py con logging robusto
             self.process = subprocess.Popen(
                 [sys.executable, "app.py"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stdout=None,  # Usar stdout del proceso padre
+                stderr=None,  # Usar stderr del proceso padre
                 text=True,
                 bufsize=1,
                 universal_newlines=True,
             )
 
-            # Capturar output de forma segura
-            stdout, stderr = self.process.communicate()
-            exit_code = self.process.returncode
+            # Esperar a que termine el proceso
+            exit_code = self.process.wait()
 
-            # Escribir logs de forma segura
+            # Escribir log básico
             with open(log_file, "w", encoding="utf-8") as f:
                 f.write(f"[{timestamp}] Iniciando app.py...\n")
-                if stdout:
-                    f.write(stdout)
-                if stderr:
-                    f.write(f"\n--- ERRORES ---\n{stderr}")
-                f.write(
-                    f"\n[{time.strftime('%F %T')}] app.py terminó con código: {exit_code}\n"
-                )
+                f.write(f"[{time.strftime('%F %T')}] app.py terminó con código: {exit_code}\n")
 
             logger.info(
                 f"✅ Ciclo {self.cycle_count} completado - Exit code: {exit_code}"
