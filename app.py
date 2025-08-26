@@ -228,12 +228,19 @@ def main():
         logger.critical("🚨 KILL SWITCH ACTIVADO - Bot detenido por seguridad")
         return
 
-    logger.info("EventArb Bot — Semana 5 (MAINNET MODE)")
+    # Determine bot mode from environment
+    bot_mode = os.getenv("BOT_MODE", "mainnet")
+    simulation_mode = bot_mode == "testnet" or bot_mode == "simulation"
+    
+    if simulation_mode:
+        logger.info("EventArb Bot — Semana 5 (TESTNET/SIMULATION MODE)")
+    else:
+        logger.info("EventArb Bot — Semana 5 (MAINNET MODE)")
 
     # Initialize components
     init_db()
     risk_manager = RiskManager()
-    order_router = OrderRouter(simulation=cfg.get("simulation", True))
+    order_router = OrderRouter(simulation=simulation_mode)
     sl_tp_manager = SLTPManager()
     oco_metrics = OCOMetrics()
     daily_limits = DailyLimits()
