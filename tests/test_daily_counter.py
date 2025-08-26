@@ -3,7 +3,9 @@ import sqlite3
 import tempfile
 from datetime import datetime
 
-from p1.daily_counter import calculate_daily_pnl, get_daily_count
+import sys
+sys.path.append('p1')
+from daily_counter import calculate_daily_pnl, get_daily_count
 
 
 def test_daily_counter_with_db():

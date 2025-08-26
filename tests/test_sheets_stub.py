@@ -1,4 +1,6 @@
-from p1.sheets_handler import append_trade_closed
+import sys
+sys.path.append('p1')
+from sheets_handler import append_trade_closed
 
 
 def test_sheets_noop_when_disabled(monkeypatch):

@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 
-from p1.dashboard import app
+import sys
+sys.path.append('p1')
+from dashboard import app
 
 
 def test_metrics_endpoint_ok():

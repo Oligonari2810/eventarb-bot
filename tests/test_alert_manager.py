@@ -1,5 +1,5 @@
 def test_alert_grouping_and_cooldown():
-    from p1.alert_manager import AlertManager
+    from alert_manager import AlertManager
 
     am = AlertManager()
     file = "binance_api.py"
