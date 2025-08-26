@@ -7,9 +7,45 @@ Bot para automatizar eventos y notificaciones
 import os
 import yaml
 import sqlite3
+import logging
+import logging.handlers
 from decimal import Decimal
 from datetime import datetime
 from dotenv import load_dotenv
+
+# Configurar logging robusto ANTES de cualquier import
+LOG_DIR = "logs"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+def setup_robust_logger(name, log_file):
+    """Configura logger robusto con rotación automática"""
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    
+    # Evitar handlers duplicados
+    if logger.handlers:
+        return logger
+    
+    handler = logging.handlers.RotatingFileHandler(
+        log_file,
+        maxBytes=5_000_000,  # 5MB
+        backupCount=5,
+        delay=True,
+        encoding="utf-8"
+    )
+    
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s %(name)s %(message)s"
+    )
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    logger.propagate = False
+    
+    return logger
+
+# Configurar logger principal de la app
+app_logger = setup_robust_logger("bot_app", "logs/app.log")
+
 from eventarb.core.logging_setup import setup_logging
 from eventarb.ingest.sheets_reader import read_events_from_sheet
 from eventarb.core.planner import plan_actions_for_event

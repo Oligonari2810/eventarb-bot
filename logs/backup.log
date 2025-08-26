@@ -14,3 +14,27 @@ usage: date [-jnRu] [-I[date|hours|minutes|seconds]] [-f input_fmt]
             [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
 🧹 Limpiando backups antiguos...
 🎯 Backup completado: -rw-r--r--@ 1 anamarperezmarrero  staff    80K Aug 25 13:00 backups/trades-2025-08-25-1300.db
+🔄 Creando backup de trades.db...
+✅ Backup creado exitosamente: backups/trades-2025-08-25-1400.db
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds]] [-f input_fmt]
+            [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+🧹 Limpiando backups antiguos...
+🎯 Backup completado: -rw-r--r--@ 1 anamarperezmarrero  staff    80K Aug 25 14:00 backups/trades-2025-08-25-1400.db
+🔄 Creando backup de trades.db...
+✅ Backup creado exitosamente: backups/trades-2025-08-25-1700.db
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds]] [-f input_fmt]
+            [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+🧹 Limpiando backups antiguos...
+🎯 Backup completado: -rw-r--r--@ 1 anamarperezmarrero  staff    80K Aug 25 17:00 backups/trades-2025-08-25-1700.db
+🔄 Creando backup de trades.db...
+✅ Backup creado exitosamente: backups/trades-2025-08-25-2000.db
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds]] [-f input_fmt]
+            [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+🧹 Limpiando backups antiguos...
+🎯 Backup completado: -rw-r--r--@ 1 anamarperezmarrero  staff    80K Aug 25 20:00 backups/trades-2025-08-25-2000.db

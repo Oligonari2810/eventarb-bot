@@ -1,13 +1,23 @@
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*.egg-info/
+.venv/
 .env
 .env.*
-.venv/
-venv/
-dist/
-build/
-.cache/
+# Logs y datos locales
+logs/
+logs_cursor/
+*.log
+*.log.*
+*.sqlite
+trading.db
+# Credenciales
+credentials.json
+token*.json
+# Artefactos locales
+*.xlsx
+*.csv
 .DS_Store
-
+.vscode/
+.idea/
