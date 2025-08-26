@@ -1,7 +1,8 @@
 from fastapi.testclient import TestClient
 
 import sys
-sys.path.append('p1')
+
+sys.path.append("p1")
 from dashboard import app
 
 

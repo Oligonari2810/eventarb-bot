@@ -1,5 +1,6 @@
 import sys
-sys.path.append('p1')
+
+sys.path.append("p1")
 from sheets_handler import append_trade_closed
 
 
