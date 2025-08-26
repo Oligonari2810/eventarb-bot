@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 
-from daily_counter import get_daily_count, calculate_daily_pnl
+from p1.daily_counter import get_daily_count, calculate_daily_pnl
 
 app = FastAPI(title="EventArb Monitoring")
 
