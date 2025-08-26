@@ -1607,3 +1607,128 @@
 2025-08-25 20:47:34,482 INFO bot_runner ✅ Ciclo 213 completado - Exit code: 0
 2025-08-25 20:47:34,482 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
 2025-08-25 20:47:34,482 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:47:39,482 INFO bot_runner 🔄 Ciclo 214: Iniciando app.py
+2025-08-25 20:47:40,917 INFO bot_runner ✅ Ciclo 214 completado - Exit code: 0
+2025-08-25 20:47:40,917 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:47:40,917 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:47:45,923 INFO bot_runner 🔄 Ciclo 215: Iniciando app.py
+2025-08-25 20:47:47,073 INFO bot_runner ✅ Ciclo 215 completado - Exit code: 0
+2025-08-25 20:47:47,073 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:47:47,073 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:47:52,074 INFO bot_runner 🔄 Ciclo 216: Iniciando app.py
+2025-08-25 20:47:53,569 INFO bot_runner ✅ Ciclo 216 completado - Exit code: 0
+2025-08-25 20:47:53,569 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:47:53,569 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:47:58,569 INFO bot_runner 🔄 Ciclo 217: Iniciando app.py
+2025-08-25 20:47:59,730 INFO bot_runner ✅ Ciclo 217 completado - Exit code: 0
+2025-08-25 20:47:59,731 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:47:59,731 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:04,736 INFO bot_runner 🔄 Ciclo 218: Iniciando app.py
+2025-08-25 20:48:06,215 INFO bot_runner ✅ Ciclo 218 completado - Exit code: 0
+2025-08-25 20:48:06,216 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:06,216 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:11,221 INFO bot_runner 🔄 Ciclo 219: Iniciando app.py
+2025-08-25 20:48:12,391 INFO bot_runner ✅ Ciclo 219 completado - Exit code: 0
+2025-08-25 20:48:12,391 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:12,391 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:17,396 INFO bot_runner 🔄 Ciclo 220: Iniciando app.py
+2025-08-25 20:48:18,588 INFO bot_runner ✅ Ciclo 220 completado - Exit code: 0
+2025-08-25 20:48:18,588 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:18,588 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:23,593 INFO bot_runner 🔄 Ciclo 221: Iniciando app.py
+2025-08-25 20:48:25,056 INFO bot_runner ✅ Ciclo 221 completado - Exit code: 0
+2025-08-25 20:48:25,056 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:25,056 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:30,061 INFO bot_runner 🔄 Ciclo 222: Iniciando app.py
+2025-08-25 20:48:31,213 INFO bot_runner ✅ Ciclo 222 completado - Exit code: 0
+2025-08-25 20:48:31,213 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:31,213 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:36,215 INFO bot_runner 🔄 Ciclo 223: Iniciando app.py
+2025-08-25 20:48:37,641 INFO bot_runner ✅ Ciclo 223 completado - Exit code: 0
+2025-08-25 20:48:37,641 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:37,641 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:42,646 INFO bot_runner 🔄 Ciclo 224: Iniciando app.py
+2025-08-25 20:48:44,154 INFO bot_runner ✅ Ciclo 224 completado - Exit code: 0
+2025-08-25 20:48:44,155 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:44,155 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:49,160 INFO bot_runner 🔄 Ciclo 225: Iniciando app.py
+2025-08-25 20:48:50,367 INFO bot_runner ✅ Ciclo 225 completado - Exit code: 0
+2025-08-25 20:48:50,367 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:50,367 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:48:55,372 INFO bot_runner 🔄 Ciclo 226: Iniciando app.py
+2025-08-25 20:48:56,791 INFO bot_runner ✅ Ciclo 226 completado - Exit code: 0
+2025-08-25 20:48:56,791 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:48:56,791 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:01,797 INFO bot_runner 🔄 Ciclo 227: Iniciando app.py
+2025-08-25 20:49:02,945 INFO bot_runner ✅ Ciclo 227 completado - Exit code: 0
+2025-08-25 20:49:02,946 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:02,946 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:07,951 INFO bot_runner 🔄 Ciclo 228: Iniciando app.py
+2025-08-25 20:49:09,379 INFO bot_runner ✅ Ciclo 228 completado - Exit code: 0
+2025-08-25 20:49:09,379 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:09,379 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:14,384 INFO bot_runner 🔄 Ciclo 229: Iniciando app.py
+2025-08-25 20:49:15,809 INFO bot_runner ✅ Ciclo 229 completado - Exit code: 0
+2025-08-25 20:49:15,809 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:15,810 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:20,815 INFO bot_runner 🔄 Ciclo 230: Iniciando app.py
+2025-08-25 20:49:22,250 INFO bot_runner ✅ Ciclo 230 completado - Exit code: 0
+2025-08-25 20:49:22,250 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:22,250 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:27,255 INFO bot_runner 🔄 Ciclo 231: Iniciando app.py
+2025-08-25 20:49:28,138 INFO bot_runner ✅ Ciclo 231 completado - Exit code: 0
+2025-08-25 20:49:28,138 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:28,138 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:33,143 INFO bot_runner 🔄 Ciclo 232: Iniciando app.py
+2025-08-25 20:49:34,314 INFO bot_runner ✅ Ciclo 232 completado - Exit code: 0
+2025-08-25 20:49:34,314 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:34,314 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:39,318 INFO bot_runner 🔄 Ciclo 233: Iniciando app.py
+2025-08-25 20:49:40,750 INFO bot_runner ✅ Ciclo 233 completado - Exit code: 0
+2025-08-25 20:49:40,750 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:40,750 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:45,753 INFO bot_runner 🔄 Ciclo 234: Iniciando app.py
+2025-08-25 20:49:47,192 INFO bot_runner ✅ Ciclo 234 completado - Exit code: 0
+2025-08-25 20:49:47,192 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:47,192 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:52,194 INFO bot_runner 🔄 Ciclo 235: Iniciando app.py
+2025-08-25 20:49:53,414 INFO bot_runner ✅ Ciclo 235 completado - Exit code: 0
+2025-08-25 20:49:53,414 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:53,414 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:49:58,418 INFO bot_runner 🔄 Ciclo 236: Iniciando app.py
+2025-08-25 20:49:59,311 INFO bot_runner ✅ Ciclo 236 completado - Exit code: 0
+2025-08-25 20:49:59,311 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:49:59,311 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:04,316 INFO bot_runner 🔄 Ciclo 237: Iniciando app.py
+2025-08-25 20:50:05,834 INFO bot_runner ✅ Ciclo 237 completado - Exit code: 0
+2025-08-25 20:50:05,834 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:05,834 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:10,839 INFO bot_runner 🔄 Ciclo 238: Iniciando app.py
+2025-08-25 20:50:12,013 INFO bot_runner ✅ Ciclo 238 completado - Exit code: 0
+2025-08-25 20:50:12,013 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:12,013 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:17,018 INFO bot_runner 🔄 Ciclo 239: Iniciando app.py
+2025-08-25 20:50:18,183 INFO bot_runner ✅ Ciclo 239 completado - Exit code: 0
+2025-08-25 20:50:18,183 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:18,183 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:23,188 INFO bot_runner 🔄 Ciclo 240: Iniciando app.py
+2025-08-25 20:50:24,409 INFO bot_runner ✅ Ciclo 240 completado - Exit code: 0
+2025-08-25 20:50:24,409 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:24,409 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:29,412 INFO bot_runner 🔄 Ciclo 241: Iniciando app.py
+2025-08-25 20:50:30,572 INFO bot_runner ✅ Ciclo 241 completado - Exit code: 0
+2025-08-25 20:50:30,572 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:30,572 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:35,576 INFO bot_runner 🔄 Ciclo 242: Iniciando app.py
+2025-08-25 20:50:37,008 INFO bot_runner ✅ Ciclo 242 completado - Exit code: 0
+2025-08-25 20:50:37,008 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:37,008 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:42,010 INFO bot_runner 🔄 Ciclo 243: Iniciando app.py
+2025-08-25 20:50:43,174 INFO bot_runner ✅ Ciclo 243 completado - Exit code: 0
+2025-08-25 20:50:43,174 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:43,174 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:48,179 INFO bot_runner 🔄 Ciclo 244: Iniciando app.py
+2025-08-25 20:50:49,078 INFO bot_runner ✅ Ciclo 244 completado - Exit code: 0
+2025-08-25 20:50:49,078 INFO bot_runner 🎯 Bot terminó normalmente (límites diarios alcanzados)
+2025-08-25 20:50:49,078 INFO bot_runner ⏳ Pausa de 5 segundos...
+2025-08-25 20:50:54,083 INFO bot_runner 🔄 Ciclo 245: Iniciando app.py

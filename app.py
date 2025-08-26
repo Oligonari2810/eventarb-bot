@@ -183,7 +183,7 @@ def today_loss_pct(db_path: str = "trades.db") -> float:
         if equity_start_of_day <= 0:
             # Evita divisiones por cero o bases inválidas
             print(
-                f"⚠️ Equity de inicio de día <= 0; devolviendo 0 para today_loss_pct()"
+                "⚠️ Equity de inicio de día <= 0; devolviendo 0 para today_loss_pct()"
             )
             return 0.0
 

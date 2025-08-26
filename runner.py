@@ -11,7 +11,6 @@ import sys
 import time
 import signal
 import subprocess
-from pathlib import Path
 
 # Configurar logging robusto
 LOG_DIR = "logs"
