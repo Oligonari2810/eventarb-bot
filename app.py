@@ -28,14 +28,18 @@ def setup_robust_logger(name, log_file):
     if logger.handlers:
         return logger
 
-    handler = logging.handlers.RotatingFileHandler(
-        log_file, maxBytes=5_000_000, backupCount=5, delay=True, encoding="utf-8"  # 5MB
-    )
-
-    formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s")
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-    logger.propagate = False
+    try:
+        handler = logging.handlers.RotatingFileHandler(
+            log_file, maxBytes=5_000_000, backupCount=5, delay=True, encoding="utf-8"  # 5MB
+        )
+        formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s")
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        logger.propagate = False
+    except Exception as e:
+        # Fallback to basic logging if file handler fails
+        print(f"Warning: Could not setup file logger for {name}: {e}")
+        logging.basicConfig(level=logging.INFO)
 
     return logger
 
