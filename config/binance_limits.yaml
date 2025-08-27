@@ -1,0 +1,54 @@
+# Configuración de límites de Binance para evitar errores NOTIONAL
+# Resuelve: APIError(code=-1013): Filter failure: NOTIONAL
+
+binance:
+  # Notional mínimo global (en USDT)
+  min_notional: 10.0
+  
+  # Cantidades mínimas por símbolo (en unidades de la crypto)
+  min_quantities:
+    BTCUSDT: 0.00001    # 0.00001 BTC
+    ETHUSDT: 0.0001     # 0.0001 ETH
+    SOLUSDT: 0.01       # 0.01 SOL
+    ADAUSDT: 1.0        # 1.0 ADA
+    DOTUSDT: 0.1        # 0.1 DOT
+    LINKUSDT: 0.01      # 0.01 LINK
+    MATICUSDT: 1.0      # 1.0 MATIC
+    AVAXUSDT: 0.01      # 0.01 AVAX
+    UNIUSDT: 0.01       # 0.01 UNI
+    ATOMUSDT: 0.01      # 0.01 ATOM
+    BNBUSDT: 0.001      # 0.001 BNB
+    XRPUSDT: 1.0        # 1.0 XRP
+    DOGEUSDT: 1.0       # 1.0 DOGE
+    SHIBUSDT: 1000.0    # 1000.0 SHIB
+    LTCUSDT: 0.01       # 0.01 LTC
+    BCHUSDT: 0.01       # 0.01 BCH
+    EOSUSDT: 0.1        # 0.1 EOS
+    TRXUSDT: 1.0        # 1.0 TRX
+    XLMUSDT: 1.0        # 1.0 XLM
+    VETUSDT: 1.0        # 1.0 VET
+    DEFAULT: 0.001      # Default para símbolos desconocidos
+  
+  # Precisión de decimales por símbolo
+  precision:
+    BTCUSDT: 5          # 0.00001
+    ETHUSDT: 4          # 0.0001
+    SOLUSDT: 2          # 0.01
+    ADAUSDT: 0          # 1
+    DOTUSDT: 1          # 0.1
+    LINKUSDT: 2          # 0.01
+    MATICUSDT: 0         # 1
+    AVAXUSDT: 2          # 0.01
+    UNIUSDT: 2           # 0.01
+    ATOMUSDT: 2          # 0.01
+    DEFAULT: 3           # 0.001 para símbolos desconocidos
+  
+  # Configuración de testnet vs mainnet
+  testnet:
+    enabled: true
+    min_notional: 10.0   # Mismo límite en testnet
+  
+  # Configuración de mainnet
+  mainnet:
+    enabled: false
+    min_notional: 10.0   # Límite real en mainnet

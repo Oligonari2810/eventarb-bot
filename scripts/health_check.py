@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import os
-import time
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 # Agregar el directorio raíz al path para importar eventarb

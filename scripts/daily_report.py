@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import datetime
+import os
 import sqlite3
 import sys
-import os
 
 # Agregar el directorio raíz al path para importar eventarb
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

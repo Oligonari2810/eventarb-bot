@@ -5,21 +5,21 @@ Analiza errores automáticamente y crea Pull Requests con fixes
 """
 
 import os
-import sys
-import json
-import time
 import subprocess
-import requests
-from pathlib import Path
-from typing import Dict, Any, List, Optional
+import sys
+import time
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any, Dict, List
+
+import requests
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from eventarb.utils.notify import send_telegram
 from scripts.ds_client import DeepSeekClient
 from scripts.prompts import *
-from eventarb.utils.notify import send_telegram
 
 
 class TriageAndPR:

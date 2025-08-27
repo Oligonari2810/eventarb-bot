@@ -5,13 +5,13 @@ Monitorea logs en tiempo real y dispara el sistema de auto-triage cuando detecta
 """
 
 import os
+import signal
+import subprocess
 import sys
 import time
-import subprocess
-import signal
-from pathlib import Path
-from typing import Dict, Set, Optional
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Dict, Optional, Set
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

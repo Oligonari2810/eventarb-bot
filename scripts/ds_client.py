@@ -4,12 +4,11 @@ DeepSeek Client para EventArb Bot
 Cliente para interactuar con la API de DeepSeek para análisis y fixes automáticos
 """
 
-import os
 import json
-import time
+import os
+from typing import Any, Dict, Optional
+
 import requests
-from typing import Dict, Any, Optional
-from pathlib import Path
 
 
 class DeepSeekClient:
@@ -87,7 +86,7 @@ class DeepSeekClient:
             return (
                 response.get("choices", [{}])[0].get("message", {}).get("content", "")
             )
-        except Exception as e:
+        except Exception:
             return None
 
     def _make_request(self, prompt: str) -> Dict[str, Any]:
