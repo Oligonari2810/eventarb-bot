@@ -51,29 +51,59 @@ def get_daily_count(db_path: str = "trades.db", limit: int = LIMIT_PER_DAY) -> s
 
 
 def calculate_daily_pnl(db_path: str = "trades.db") -> Decimal:
+    """Calcula el PnL diario desde la tabla trades"""
     try:
         with sqlite3.connect(db_path) as conn:
-            # Usar la nueva tabla bot_state para PnL persistente
-            cur = conn.execute(
-                """
-                SELECT loss_cents FROM bot_state WHERE date = date('now')
-            """
-            )
-            result = cur.fetchone()
-
-            if result:
-                loss_cents = result[0] or 0
-                return Decimal(loss_cents) / 100
-            else:
-                # Fallback: calcular desde trades table
+            # Usar la nueva tabla bot_state para PnL persistente (si existe)
+            try:
                 cur = conn.execute(
                     """
-                    SELECT COALESCE(SUM(notional_usd_cents), 0) FROM trades
-                    WHERE DATE(created_at) = DATE('now')
-                """
+                    SELECT loss_cents FROM bot_state WHERE date = date('now')
+                    """
                 )
-                notional_cents = cur.fetchone()[0] or 0
-                return Decimal(notional_cents) / 100
+                result = cur.fetchone()
+
+                if result:
+                    loss_cents = result[0] or 0
+                    return Decimal(loss_cents) / 100
+            except Exception:
+                # Tabla bot_state no existe, continuar con fallback
+                pass
+
+            # Fallback: intentar con estructura de test (pnl_usd directo)
+            try:
+                cur = conn.execute(
+                    """
+                    SELECT COALESCE(SUM(pnl_usd), 0) as daily_pnl
+                    FROM trades 
+                    WHERE DATE(open_time) = DATE('now')
+                    """
+                )
+                daily_pnl = cur.fetchone()[0] or 0
+                return Decimal(str(daily_pnl))
+            except Exception:
+                # Fallback: intentar con la estructura real de trades (precios)
+                try:
+                    cur = conn.execute(
+                        """
+                        SELECT 
+                            COALESCE(SUM(
+                                CASE 
+                                    WHEN tp_price_cents IS NOT NULL THEN 
+                                        (tp_price_cents - entry_price_cents) * quantity_cents / 10000
+                                    WHEN sl_price_cents IS NOT NULL THEN 
+                                        (sl_price_cents - entry_price_cents) * quantity_cents / 10000
+                                    ELSE 0
+                                END
+                            ), 0) as daily_pnl_cents
+                        FROM trades 
+                        WHERE DATE(created_at) = DATE('now')
+                        """
+                    )
+                    pnl_cents = cur.fetchone()[0] or 0
+                    return Decimal(pnl_cents) / 100
+                except Exception:
+                    return Decimal("0.0")
 
     except Exception:
         return Decimal("0.0")
