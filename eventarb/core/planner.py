@@ -4,10 +4,12 @@ from typing import List
 from eventarb.core.models import Event, PlannedAction, Side
 
 
-def plan_actions_for_event(ev: Event, default_notional_usd: float) -> List[PlannedAction]:
+def plan_actions_for_event(
+    ev: Event, default_notional_usd: float
+) -> List[PlannedAction]:
     actions: List[PlannedAction] = []
     kind = (ev.kind or "").upper().strip()
-    
+
     if kind in ("CPI", "FOMC"):
         action_side: Side = "BUY"
         tp_pct = 3.5

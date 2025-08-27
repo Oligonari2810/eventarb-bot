@@ -113,7 +113,9 @@ def check_emergency_stop() -> bool:
         return False  # En caso de error, permitir operación
 
 
-def update_bot_state(trades_done: Optional[int] = None, loss_cents: Optional[int] = None):
+def update_bot_state(
+    trades_done: Optional[int] = None, loss_cents: Optional[int] = None
+):
     """Actualiza el estado del bot en la base de datos"""
     try:
         conn = sqlite3.connect("trades.db")
