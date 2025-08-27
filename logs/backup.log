@@ -127,3 +127,21 @@ usage: date [-jnRu] [-I[date|hours|minutes|seconds]] [-f input_fmt]
 🧹 Limpiando backups antiguos...
 🎯 Backup completado: -rw-r--r--@ 1 anamarperezmarrero  staff    96K Aug 26 21:00 backups/trades-2025-08-26-2100.db
 /bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory
+/bin/sh: ./backup_db.sh: No such file or directory

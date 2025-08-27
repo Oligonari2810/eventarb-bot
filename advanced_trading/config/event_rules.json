@@ -1,0 +1,39 @@
+{
+  "event_rules": {
+    "CPI": {
+      "direction": "SELL_IF_ACTUAL_ABOVE_CONSENSUS",
+      "impact": "HIGH",
+      "timeframe": "15min",
+      "required_deviation": 0.1,
+      "size_multiplier": 1.5
+    },
+    "GDP": {
+      "direction": "BUY_IF_ACTUAL_BELOW_CONSENSUS",
+      "impact": "HIGH", 
+      "timeframe": "30min",
+      "required_deviation": 0.2,
+      "size_multiplier": 1.3
+    },
+    "UNEMPLOYMENT": {
+      "direction": "BUY_IF_ACTUAL_ABOVE_CONSENSUS",
+      "impact": "MEDIUM",
+      "timeframe": "15min",
+      "required_deviation": 0.3,
+      "size_multiplier": 1.2
+    },
+    "INTEREST_RATE": {
+      "direction": "SELL_IF_ACTUAL_ABOVE_CONSENSUS",
+      "impact": "VERY_HIGH",
+      "timeframe": "30min",
+      "required_deviation": 0.05,
+      "size_multiplier": 2.0
+    },
+    "RETAIL_SALES": {
+      "direction": "SELL_IF_ACTUAL_ABOVE_CONSENSUS",
+      "impact": "MEDIUM",
+      "timeframe": "10min",
+      "required_deviation": 0.4,
+      "size_multiplier": 1.1
+    }
+  }
+}
