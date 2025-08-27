@@ -125,7 +125,7 @@ class OrderRouter:
                 logger.info(
                     f"🔄 REAL quantity adjusted: {quantity} → {adjusted_quantity}"
                 )
-                quantity = adjusted_quantity
+                quantity = Decimal(str(adjusted_quantity))
 
             # Place real market order with validated quantity
             order = self.client.order_market(

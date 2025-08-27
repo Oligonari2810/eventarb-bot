@@ -12,6 +12,7 @@ import sqlite3
 import sys
 from datetime import datetime
 from decimal import Decimal
+from typing import Optional
 
 # FIX DE EMERGENCIA: Restaurar streams si están rotos
 try:
@@ -315,6 +316,30 @@ def today_loss_pct(db_path: str = "trades.db") -> float:
 def load_settings():
     with open("config/settings.yaml", "r") as f:
         return yaml.safe_load(f)
+
+
+def validate_order_parameters(symbol: str, side: str, quantity: float, price: float) -> tuple[bool, str, float]:
+    """
+    Valida parámetros de orden antes de enviar a Binance
+    Returns: (is_valid, message, adjusted_quantity)
+    """
+    try:
+        # Validación básica de notional
+        notional = quantity * price
+        if notional < 10.0:
+            # Ajustar cantidad para cumplir notional mínimo
+            adjusted_quantity = (10.0 / price) * 1.001  # +0.1% margen
+            adjusted_quantity = round(adjusted_quantity, 8)
+            return (
+                True,
+                f"Quantity ajustada para cumplir notional mínimo: {adjusted_quantity}",
+                adjusted_quantity,
+            )
+        
+        return True, "Validación exitosa", quantity
+        
+    except Exception as e:
+        return False, f"Error de validación: {e}", 0.0
 
 
 def main():
