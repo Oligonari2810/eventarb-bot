@@ -1,0 +1,34 @@
+[Unit]
+Description=EventArb Bot Automation Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=anamarperezmarrero
+WorkingDirectory=/Users/anamarperezmarrero/eventarb-bot/eventarb-bot
+Environment=PATH=/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/.venv/bin
+Environment=PYTHONPATH=/Users/anamarperezmarrero/eventarb-bot/eventarb-bot
+Environment=EMERGENCY_STOP=0
+Environment=DRY_RUN=0
+Environment=BOT_MODE=testnet
+Environment=DB_PATH=events.db
+
+ExecStart=/Users/anamarperezmarrero/eventarb-bot/eventarb-bot/.venv/bin/python scripts/start_automation.py
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=eventarb-bot
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/Users/anamarperezmarrero/eventarb-bot/eventarb-bot
+
+[Install]
+WantedBy=multi-user.target
