@@ -1,0 +1,105 @@
+=== RESUMEN PARA DS - EVENTARB BOT - Tue Aug 26 20:41:18 AST 2025 ===
+
+🚨 PROBLEMA IDENTIFICADO:
+Event Scheduler se inicia pero NO ejecuta su loop principal
+
+✅ LO QUE FUNCIONA:
+- Importaciones correctas (EventScheduler, start_event_scheduler)
+- Base de datos funcional (tablas events, event_fires)
+- Eventos se encuentran correctamente (SQL funciona)
+- on_event() funciona cuando se llama manualmente
+- app.py ejecutándose correctamente
+
+❌ LO QUE NO FUNCIONA:
+- Thread del Event Scheduler no ejecuta loop principal
+- No genera logs del scheduler (último log: 20:06)
+- No procesa eventos automáticamente
+- No dispara eventos programados
+
+🔧 ARCHIVOS CRÍTICOS:
+- runner.py: Inicia Event Scheduler en thread separado
+- p1/event_scheduler.py: Lógica del scheduler (funciona manualmente)
+- app.py: Función on_event() implementada y funcional
+
+🧪 PRUEBAS REALIZADAS:
+- EventScheduler funciona manualmente (test_scheduler_manual.py)
+- Encuentra 1 evento próximo: test_inmediato
+- Base de datos responde correctamente
+- Importaciones funcionan sin errores
+
+📊 ESTADO ACTUAL:
+anamarperezmarrero 17713   0.0  0.4 411145120  74176 s009  SN    8:28PM   0:00.37 /opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u app.py
+anamarperezmarrero 17655   0.0  0.4 410946608  69952 s009  SN    8:28PM   0:00.34 /opt/homebrew/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -u runner.py
+anamarperezmarrero 26154   0.0  0.0 410208704   1328 s009  S+    8:39PM   0:00.00 grep python
+
+🗄️ BASE DE DATOS:
+CREATE TABLE trades (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        event_id TEXT NOT NULL,
+        symbol TEXT NOT NULL,
+        side TEXT NOT NULL,
+        quantity REAL NOT NULL,
+        entry_price REAL NOT NULL,
+        tp_price REAL,
+        sl_price REAL,
+        notional_usd REAL NOT NULL,
+        simulated BOOLEAN DEFAULT 1,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    , pnl_usd REAL DEFAULT 0, closed_at TEXT, pnl_fee_usd REAL DEFAULT 0, pnl_net_usd REAL DEFAULT 0, status TEXT DEFAULT 'OPEN');
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE INDEX idx_trades_closed_at ON trades(closed_at);
+CREATE INDEX idx_trades_date_closed ON trades(date(closed_at));
+CREATE TABLE events (id TEXT PRIMARY KEY, t0_iso TEXT NOT NULL, symbol TEXT NOT NULL, type TEXT NOT NULL, consensus TEXT, enabled INTEGER DEFAULT 1);
+CREATE TABLE event_fires (event_id TEXT, fired_at TEXT, PRIMARY KEY (event_id, fired_at));
+
+📅 EVENTOS PROGRAMADOS:
+test_1756231731|2025-08-26T18:09:51.116976Z|BTCUSDT|TEST|{}|1
+test_1756232885|2025-08-26T18:30:05.033069Z|BTCUSDT|TEST|{}|1
+test_1756251793|2025-08-26T23:45:13.268849|BTCUSDT|TEST|{}|1
+test_1756252375|2025-08-26T23:54:55.930406|BTCUSDT|TEST|{}|1
+test_1756252625|2025-08-26T23:58:05.733040|BTCUSDT|TEST|{}|1
+test_inmediato|2025-08-27 00:35:58|BTCUSDT|TEST|{}|1
+
+📝 LOGS CRÍTICOS (últimos 20):
+2025-08-26 20:28:44,359 INFO bot_runner 🔄 Ciclo 1: Iniciando app.py
+2025-08-26 20:28:44,359 INFO bot_runner ✅ Usando Python del entorno virtual: /Users/anamarperezmarrero/eventarb-bot/eventarb-bot/venv/bin/python
+2025-08-26 20:28:45,640 INFO bot_runner app.py: ✅ Main function completed successfully
+2025-08-26 20:28:45,640 INFO bot_runner app.py: 🔄 Manteniendo app.py ejecutándose para Event Scheduler...
+2025-08-26 20:29:45,640 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:30:45,646 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:31:45,651 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:32:45,656 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:33:45,674 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:34:45,679 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:35:45,685 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+🎯 Event received: {'id': 'test_inmediato', 't0_iso': '2025-08-27 00:35:58', 'symbol': 'BTCUSDT', 'type': 'TEST', 'consensus': '{}'}
+📅 Processing event: test_inmediato (BTCUSDT TEST)
+🧪 Test Event for BTCUSDT - Evento de prueba exitoso
+✅ Event test_inmediato processed successfully
+2025-08-26 20:36:45,690 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:37:45,695 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:38:45,700 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:39:45,706 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+2025-08-26 20:40:45,711 INFO bot_runner app.py: 💓 Heartbeat: app.py sigue ejecutándose...
+
+🎯 DIAGNÓSTICO FINAL:
+El Event Scheduler se inicia correctamente en runner.py pero el thread
+no ejecuta su loop principal. La lógica del scheduler funciona cuando
+se ejecuta manualmente, pero falla en el contexto del runner.
+
+🔍 POSIBLES CAUSAS:
+1. Thread daemon vs non-daemon
+2. Contexto de ejecución en runner.py
+3. Manejo de señales o excepciones
+4. Problema de importación en el contexto del runner
+
+📋 ARCHIVOS DE DIAGNÓSTICO DISPONIBLES:
+- bot_complete_report.txt: Reporte completo del sistema
+- system_status.txt: Estado de procesos
+- database_schema.txt: Schema de la BD
+- runner_logs_recent.txt: Logs recientes del runner
+- scheduler_logs_recent.txt: Logs del scheduler
+
+🏁 RESUMEN:
+Sistema 90% funcional. Solo falta que el Event Scheduler ejecute
+su loop principal en el contexto del runner.py

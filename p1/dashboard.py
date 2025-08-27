@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import os
+import sys
 from fastapi import FastAPI
+
+# Agregar el directorio raíz al path para importar módulos
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from p1.daily_counter import get_daily_count, calculate_daily_pnl
 
@@ -32,7 +37,23 @@ async def metrics():
     }
 
 
+@app.get("/health")
+async def health():
+    """Health check endpoint"""
+    return {"status": "healthy", "timestamp": "2025-08-26T12:43:00Z"}
+
+
 if __name__ == "__main__":
     import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    
+    # Configuración flexible del puerto
+    port = int(os.getenv("PORT", "8000"))
+    host = os.getenv("HOST", "0.0.0.0")
+    
+    print(f"🚀 Iniciando EventArb Dashboard en {host}:{port}")
+    
+    try:
+        uvicorn.run(app, host=host, port=port, log_level="info")
+    except Exception as e:
+        print(f"❌ Error iniciando dashboard: {e}")
+        sys.exit(1)

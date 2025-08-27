@@ -1,23 +1,115 @@
+# EventArb Bot - Git Ignore File
+
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
 .venv/
 .env
-.env.*
-# Logs y datos locales
-logs/
-logs_cursor/
-*.log
-*.log.*
-*.sqlite
+
+# Environment Variables (SECURITY)
+.env.production
+.env.production.*
+.env.production.backup.*
+.env.production.bak
+env_variables.txt
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
 trading.db
-# Credenciales
-credentials.json
-token*.json
-# Artefactos locales
-*.xlsx
-*.csv
-.DS_Store
+
+# Logs
+*.log
+logs_cursor/
+logs/
+
+# Archives and dumps
+*.zip
+*.tar.gz
+*.tar.bz2
+archive/
+
+# Status and audit files
+*_recent.txt
+*_status.txt
+audit_*.txt
+bot_complete_report.*
+cleanup_*.txt
+config_*.txt
+database_schema.txt
+db_test.txt
+directory_sizes.txt
+event_*.txt
+import_test.txt
+log_files.txt
+optimization_checklist.md
+python_*.txt
+runner_logs_*.txt
+scheduler_logs_*.txt
+system_status.txt
+yaml_test.txt
+
+# Documentation (archived)
+CICLO_CURSOR_COMPLETADO.md
+DEPLOYMENT_CHECKLIST.md
+ESTADO_FINAL_SISTEMA.md
+EVIDENCIAS_PR.md
+P1_SPRINT_BOOTSTRAP_COMPLETADO.md
+PR_P1.md
+
+# Scripts (archived)
+backup_db.sh
+cleanup_obsolete_files.sh
+fix_sheets_config.sh
+run_forever.sh
+run_runner_venv.sh
+
+# Test files (archived)
+test_scheduler*.py
+
+# IDE and editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
