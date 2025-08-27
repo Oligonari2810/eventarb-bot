@@ -21,7 +21,7 @@ except Exception:
     try:
         sys.stdout = open("/dev/stdout", "w")
         sys.stderr = open("/dev/stderr", "w")
-    except:
+    except Exception:
         # Fallback: usar archivos locales
         sys.stdout = open("logs/stdout_fix.log", "w")
         sys.stderr = open("logs/stderr_fix.log", "w")
@@ -36,10 +36,10 @@ def clean_binance_state():
                 try:
                     if hasattr(obj, "close"):
                         obj.close()
-                except:
+                except Exception:
                     pass
         gc.collect()  # Forzar garbage collection
-    except Exception as e:
+    except Exception:
         # Si falla la limpieza, continuar
         pass
 
@@ -108,12 +108,12 @@ def check_emergency_stop() -> bool:
             return True
         return False
 
-    except Exception as e:
-        app_logger.error(f"Error verificando emergency_stop: {e}")
+    except Exception:
+        app_logger.error("Error verificando emergency_stop")
         return False  # En caso de error, permitir operación
 
 
-def update_bot_state(trades_done: int = None, loss_cents: int = None):
+def update_bot_state(trades_done: Optional[int] = None, loss_cents: Optional[int] = None):
     """Actualiza el estado del bot en la base de datos"""
     try:
         conn = sqlite3.connect("trades.db")
@@ -140,8 +140,8 @@ def update_bot_state(trades_done: int = None, loss_cents: int = None):
         conn.commit()
         conn.close()
 
-    except Exception as e:
-        app_logger.error(f"Error actualizando bot_state: {e}")
+    except Exception:
+        app_logger.error("Error actualizando bot_state")
 
 
 from eventarb.core.logging_setup import setup_logging
@@ -201,8 +201,8 @@ class DailyLimits:
             # This will be updated when we add the proper PnL tracking
             return 0.0
 
-        except Exception as e:
-            print(f"Error calculating today_loss_pct: {e}")
+        except Exception:
+            print("Error calculating today_loss_pct")
             return 0.0
 
     def update_from_database(self):
@@ -223,8 +223,8 @@ class DailyLimits:
 
             conn.close()
 
-        except Exception as e:
-            print(f"Error updating from database: {e}")
+        except Exception:
+            print("Error updating from database")
 
 
 def _env_float(name: str, default: float) -> float:
@@ -302,8 +302,8 @@ def today_loss_pct(db_path: str = "trades.db") -> float:
         # Si es pérdida, negativa; si es ganancia, positiva.
         loss_pct = (pnl_today / equity_start_of_day) * 100.0
         return float(loss_pct)
-    except Exception as e:
-        print(f"❌ Error calculando today_loss_pct: {e}")
+    except Exception:
+        print("❌ Error calculando today_loss_pct")
         # Falla segura: no cortar por breaker si no podemos medir
         return 0.0
     finally:
@@ -318,7 +318,9 @@ def load_settings():
         return yaml.safe_load(f)
 
 
-def validate_order_parameters(symbol: str, side: str, quantity: float, price: float) -> tuple[bool, str, float]:
+def validate_order_parameters(
+    symbol: str, side: str, quantity: float, price: float
+) -> tuple[bool, str, float]:
     """
     Valida parámetros de orden antes de enviar a Binance
     Returns: (is_valid, message, adjusted_quantity)
@@ -335,11 +337,11 @@ def validate_order_parameters(symbol: str, side: str, quantity: float, price: fl
                 f"Quantity ajustada para cumplir notional mínimo: {adjusted_quantity}",
                 adjusted_quantity,
             )
-        
+
         return True, "Validación exitosa", quantity
-        
-    except Exception as e:
-        return False, f"Error de validación: {e}", 0.0
+
+    except Exception:
+        return False, "Error de validación", 0.0
 
 
 def main():
@@ -468,8 +470,8 @@ def on_event(event_data):
         # Log del evento procesado
         print(f"✅ Event {event_id} processed successfully")
 
-    except Exception as e:
-        print(f"❌ Error handling event: {e}")
+    except Exception:
+        print(f"❌ Error handling event: error")
         print(f"Event data: {event_data}")
 
 
@@ -477,8 +479,8 @@ if __name__ == "__main__":
     try:
         main()
         print("✅ Main function completed successfully")
-    except Exception as e:
-        print(f"❌ Error in main: {e}")
+    except Exception:
+        print(f"❌ Error in main: error")
 
     # Mantener el proceso vivo para que el Event Scheduler funcione
     print("🔄 Manteniendo app.py ejecutándose para Event Scheduler...")
@@ -491,6 +493,6 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print("📴 Interrupción recibida, cerrando app.py...")
             break
-        except Exception as e:
-            print(f"❌ Error en loop principal: {e}")
+        except Exception:
+            print(f"❌ Error en loop principal: error")
             time.sleep(10)  # Pausa más corta en caso de error
