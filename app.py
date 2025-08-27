@@ -18,21 +18,22 @@ try:
     sys.stdout.fileno()
 except Exception:
     try:
-        sys.stdout = open('/dev/stdout', 'w')
-        sys.stderr = open('/dev/stderr', 'w')
+        sys.stdout = open("/dev/stdout", "w")
+        sys.stderr = open("/dev/stderr", "w")
     except:
         # Fallback: usar archivos locales
-        sys.stdout = open('logs/stdout_fix.log', 'w')
-        sys.stderr = open('logs/stderr_fix.log', 'w')
+        sys.stdout = open("logs/stdout_fix.log", "w")
+        sys.stderr = open("logs/stderr_fix.log", "w")
+
 
 # LIMPIEZA DE ESTADO DE BINANCE
 def clean_binance_state():
     """Limpia objetos de Binance que puedan estar corrompiendo streams"""
     try:
         for obj in gc.get_objects():
-            if 'binance' in str(type(obj)).lower():
+            if "binance" in str(type(obj)).lower():
                 try:
-                    if hasattr(obj, 'close'):
+                    if hasattr(obj, "close"):
                         obj.close()
                 except:
                     pass
@@ -40,6 +41,7 @@ def clean_binance_state():
     except Exception as e:
         # Si falla la limpieza, continuar
         pass
+
 
 # Ejecutar limpieza al inicio
 clean_binance_state()
@@ -76,14 +78,17 @@ def setup_robust_logger(name, log_file):
 # Configurar logger principal de la app
 app_logger = setup_robust_logger("bot_app", "logs/app.log")
 
+
 # FUNCIONES HELPER PARA CONVERSIÓN MONETARIA
 def decimal_to_cents(amount: Decimal) -> int:
     """Convierte Decimal a centavos (integer)"""
     return int(amount * 100)
 
+
 def cents_to_decimal(cents: int) -> Decimal:
     """Convierte centavos (integer) a Decimal"""
     return Decimal(cents) / 100
+
 
 def check_emergency_stop() -> bool:
     """Verifica si el bot debe detenerse por emergencia"""
@@ -94,39 +99,49 @@ def check_emergency_stop() -> bool:
         )
         result = cursor.fetchone()
         conn.close()
-        
+
         if result and result[0]:
-            app_logger.critical("🚨 EMERGENCY_STOP ACTIVADO - Bot detenido por seguridad")
+            app_logger.critical(
+                "🚨 EMERGENCY_STOP ACTIVADO - Bot detenido por seguridad"
+            )
             return True
         return False
-        
+
     except Exception as e:
         app_logger.error(f"Error verificando emergency_stop: {e}")
         return False  # En caso de error, permitir operación
+
 
 def update_bot_state(trades_done: int = None, loss_cents: int = None):
     """Actualiza el estado del bot en la base de datos"""
     try:
         conn = sqlite3.connect("trades.db")
-        today = datetime.now().strftime('%Y-%m-%d')
-        
+        today = datetime.now().strftime("%Y-%m-%d")
+
         if trades_done is not None:
-            conn.execute("""
+            conn.execute(
+                """
                 UPDATE bot_state SET trades_done = ?, last_updated = datetime('now')
                 WHERE date = ?
-            """, (trades_done, today))
-        
+            """,
+                (trades_done, today),
+            )
+
         if loss_cents is not None:
-            conn.execute("""
+            conn.execute(
+                """
                 UPDATE bot_state SET loss_cents = ?, last_updated = datetime('now')
                 WHERE date = ?
-            """, (loss_cents, today))
-        
+            """,
+                (loss_cents, today),
+            )
+
         conn.commit()
         conn.close()
-        
+
     except Exception as e:
         app_logger.error(f"Error actualizando bot_state: {e}")
+
 
 from eventarb.core.logging_setup import setup_logging
 from eventarb.core.planner import plan_actions_for_event
@@ -145,7 +160,7 @@ class DailyLimits:
         self.daily_max_loss_pct = Decimal(os.getenv("DAILY_MAX_LOSS_PCT", "5.0"))
         self.daily_max_trades = int(os.getenv("DAILY_MAX_TRADES", "20"))
         self.today_trades = 0
-        self.today_pnl = Decimal('0.0')
+        self.today_pnl = Decimal("0.0")
 
     def can_trade(self) -> bool:
         """Check if daily limits allow trading"""
@@ -316,7 +331,7 @@ def main():
     # Determine bot mode from environment
     bot_mode = os.getenv("BOT_MODE", "mainnet")
     simulation_mode = bot_mode == "testnet" or bot_mode == "simulation"
-    
+
     if simulation_mode:
         logger.info("EventArb Bot — Semana 5 (TESTNET/SIMULATION MODE)")
     else:
@@ -364,7 +379,7 @@ def main():
     # if not events:
     #     logger.warning("No se encontraron eventos habilitados en Sheet.")
     #     return
-    
+
     logger.info("✅ Event Scheduler activo - esperando eventos programados...")
     return  # Salir temprano ya que los eventos se manejan vía scheduler
 
@@ -388,46 +403,46 @@ def on_event(event_data):
     """
     try:
         print(f"🎯 Event received: {event_data}")
-        
+
         # VERIFICAR EMERGENCY_STOP ANTES DE PROCESAR
         if check_emergency_stop():
             print("🚨 EMERGENCY_STOP ACTIVADO - Evento ignorado por seguridad")
             return
-        
+
         # Extraer datos del evento
-        event_id = event_data.get('id', 'unknown')
-        symbol = event_data.get('symbol', 'UNKNOWN')
-        event_type = event_data.get('type', 'UNKNOWN')
-        consensus = event_data.get('consensus', '{}')
-        
+        event_id = event_data.get("id", "unknown")
+        symbol = event_data.get("symbol", "UNKNOWN")
+        event_type = event_data.get("type", "UNKNOWN")
+        consensus = event_data.get("consensus", "{}")
+
         print(f"📅 Processing event: {event_id} ({symbol} {event_type})")
-        
+
         # IMPLEMENTACIÓN DE ESTRATEGIAS DE TRADING
-        if event_type == 'CPI':
+        if event_type == "CPI":
             print(f"🎯 CPI: Long USD si consensus > actual - {event_data}")
             # Estrategia inflación: Long USD si consensus > actual
             # TODO: Implementar lógica de trading real
-            
-        elif event_type == 'FOMC':
+
+        elif event_type == "FOMC":
             print(f"🎯 FOMC: Volatility play - {event_data}")
             # Estrategia Fed: Volatility play
             # TODO: Implementar lógica de trading real
-            
-        elif event_type == 'EARNINGS':
+
+        elif event_type == "EARNINGS":
             print(f"🎯 EARNINGS: Momentum trading - {event_data}")
             # Estrategia earnings: Momentum trading
             # TODO: Implementar lógica de trading real
-            
-        elif event_type == 'TEST':
+
+        elif event_type == "TEST":
             print(f"🧪 Test Event for {symbol} - Evento de prueba exitoso")
             # Evento de prueba, no hacer nada especial
-            
+
         else:
             print(f"❓ Unknown event type: {event_type} for {symbol}")
-        
+
         # Log del evento procesado
         print(f"✅ Event {event_id} processed successfully")
-        
+
     except Exception as e:
         print(f"❌ Error handling event: {e}")
         print(f"Event data: {event_data}")
@@ -439,10 +454,11 @@ if __name__ == "__main__":
         print("✅ Main function completed successfully")
     except Exception as e:
         print(f"❌ Error in main: {e}")
-    
+
     # Mantener el proceso vivo para que el Event Scheduler funcione
     print("🔄 Manteniendo app.py ejecutándose para Event Scheduler...")
     import time
+
     while True:
         try:
             time.sleep(60)  # Sleep para no consumir CPU

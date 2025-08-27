@@ -45,13 +45,13 @@ async def health():
 
 if __name__ == "__main__":
     import uvicorn
-    
+
     # Configuración flexible del puerto
     port = int(os.getenv("PORT", "8000"))
     host = os.getenv("HOST", "0.0.0.0")
-    
+
     print(f"🚀 Iniciando EventArb Dashboard en {host}:{port}")
-    
+
     try:
         uvicorn.run(app, host=host, port=port, log_level="info")
     except Exception as e:

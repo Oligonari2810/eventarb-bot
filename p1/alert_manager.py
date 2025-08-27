@@ -70,10 +70,12 @@ class AlertManager:
             }
         return {"emit": False}
 
-    def send_alert_with_retry(self, url: str, data: dict, max_retries: int = 3, timeout: int = 10):
+    def send_alert_with_retry(
+        self, url: str, data: dict, max_retries: int = 3, timeout: int = 10
+    ):
         """
         Envía alerta con retry y exponential backoff
-        
+
         Args:
             url: URL del webhook
             data: Datos de la alerta
@@ -83,26 +85,28 @@ class AlertManager:
         for attempt in range(max_retries):
             try:
                 response = requests.post(
-                    url, 
-                    json=data, 
+                    url,
+                    json=data,
                     timeout=timeout,
-                    headers={'Content-Type': 'application/json'}
+                    headers={"Content-Type": "application/json"},
                 )
                 response.raise_for_status()
                 return True, response.status_code
-                
+
             except requests.exceptions.Timeout:
                 print(f"⚠️  Timeout en intento {attempt + 1}/{max_retries}")
             except requests.exceptions.RequestException as e:
                 print(f"❌ Error en intento {attempt + 1}/{max_retries}: {e}")
             except Exception as e:
-                print(f"❌ Error inesperado en intento {attempt + 1}/{max_retries}: {e}")
-            
+                print(
+                    f"❌ Error inesperado en intento {attempt + 1}/{max_retries}: {e}"
+                )
+
             # Exponential backoff: esperar 1s, 2s, 4s...
             if attempt < max_retries - 1:
-                wait_time = 2 ** attempt
+                wait_time = 2**attempt
                 print(f"⏳ Esperando {wait_time}s antes del siguiente intento...")
                 time.sleep(wait_time)
-        
+
         print(f"❌ Falló después de {max_retries} intentos")
         return False, None
